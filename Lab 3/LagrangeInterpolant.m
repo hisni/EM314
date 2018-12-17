@@ -1,21 +1,23 @@
 function LagrangeInterpolant( X , Y )
-syms x
+  syms x
 
-%[0 1/2 1],[0 1/4 1]
+  Px=0;
 
-%X=[0 1/2 1];
-%Y=[0 1/4 1];
-
-len = length(X);
-for i=1:len
-  l(i)= x^0;
-  for j=1:len  
-    
-    if i!=j
-      l(i)= horner( l(i)*( x-X(j) )/( X(i)-X(j) ) );
-    endif
-    
+  len = length(X);
+  for i=1:len
+    l= x^0;
+    for j=1:len  
+      if i!=j
+        l = simplify(( l*( x-X(j) )/( X(i)-X(j) ) ));
+      endif
+    endfor
+    Px = Px + l*Y(i);
   endfor
-endfor
-l
+  Px = simplify(Px)
+  hold on;
+  grid on;
+  ezplot(Px)
+  plot(X,Y,'ob')
+  
+  m = double(subs(Px,-7 ))
 endfunction
