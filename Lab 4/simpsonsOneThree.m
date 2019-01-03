@@ -9,7 +9,7 @@ function [I,Iexact,RE] = simpsonsOneThree(f, a, b,numSeg);
     end
     
     I = Step*I/3;
-    Iexact = integral(f,0,4);
+    Iexact = integral(f,a,b);
     RE = 100*(Iexact - I)/Iexact;
      
 end

@@ -9,7 +9,7 @@ function [I,Iexact,RE] = trapezoidal(f, a, b, numSeg);
     end
     
     I = I*Step*.5;
-    Iexact= integral(f,0,4);
+    Iexact= integral(f,a,b);
      
     RE = 100*(Iexact - I)/Iexact;
      
